@@ -5,4 +5,4 @@
 1. [第一章](https://github.com/LbhFront-end/About-Regular-Expression/blob/master/About-Regular-Expression-Part1.md)
 2. [第一章](https://github.com/LbhFront-end/About-Regular-Expression/blob/master/About-Regular-Expression-Part2.md)
 3. [第三章](https://github.com/LbhFront-end/About-Regular-Expression/blob/master/About-Regular-Expression-Part3.md)
-
+4. [第四章](https://github.com/LbhFront-end/About-Regular-Expression/blob/master/About-Regular-Expression-Part4.md)
