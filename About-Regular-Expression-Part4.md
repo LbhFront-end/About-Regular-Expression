@@ -28,7 +28,7 @@
 
 DFA不支持捕获型括号（capturing parenthess）和回溯（backreference），这一点有助于判断，不过，也存在同时使用两种引擎的混合系统，在这种系统中，没有使用捕获型括号，就会使用DFA
 
-```
+```javascript
 echo =XX============================== | egrep 'X(.+)+X'
 ```
 

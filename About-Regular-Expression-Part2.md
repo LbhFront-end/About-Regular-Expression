@@ -12,7 +12,6 @@
    (4)[用环视功能为数值添加逗号](https://github.com/LbhFront-end/About-Regular-Expression/blob/master/About-Regular-Expression-Part2.md#用环视功能为数值添加逗号)  
    (5)[Text-to-HTML转换](https://github.com/LbhFront-end/About-Regular-Expression/blob/master/About-Regular-Expression-Part2.md#text-to-html转换)   
 
-   
 
 ## 精通正则表达式第三版（笔记）第二章
 
@@ -28,7 +27,7 @@ Perl是一门功能强大的脚本语言，Perl关于处理和正则表达式的
 
 简单的例子
 
-```
+```perl
 $celsius = 30;
 $fahrenheit = ($celsius * 9 / 5) + 32; #计算华氏温度
 print "$celsius C is $fahrenheit" F.\n; #返回摄氏和华氏温度
@@ -36,7 +35,7 @@ print "$celsius C is $fahrenheit" F.\n; #返回摄氏和华氏温度
 
 执行这段程序，结果是
 
-```
+```perl
 30 C is 86 F
 ```
 
@@ -44,7 +43,7 @@ print "$celsius C is $fahrenheit" F.\n; #返回摄氏和华氏温度
 
 Perl也提供跟其他流行语言类似的控制结构
 
-```
+```perl
 $celsius = 20;
 while($celsius <= 45)
 {
@@ -59,7 +58,7 @@ while($celsius <= 45)
 
 Perl可以多种方式使用正则表达式，最简单的就是坚持变量中的文本能否由某个正则表达式匹配。下面的代码检查 `$reply`中包含的字符串，报告这个字符串是否全部由数字构成
 
-```
+```perl
 $reply = "12";
 if($reply =~ m/^[0-9]+$/){
   print "只有数字\n"
@@ -72,7 +71,7 @@ if($reply =~ m/^[0-9]+$/){
 
 结合上面的例子，可以提醒用户输入一个值，然后接受这个输入，用一个正则表达式来验证，确保输入的是一个数字，如果是，我们就计算对应的华氏温度，否则就会输出一条报警消息
 
-```
+```perl
 print "请输入一个摄氏温度： \n";
 $celsius = <STDIN>;
 chomp($celsius);
@@ -100,7 +99,7 @@ if($celsius =~ m/^[0-9]+$/){
 
 那么条件判断语句：
 
-```
+```perl
 if($celsius =~ m/^[-+]?[0-9]+(\.[0-9]*)?$/){}
 ```
 
@@ -110,7 +109,7 @@ if($celsius =~ m/^[-+]?[0-9]+(\.[0-9]*)?$/){}
 
 让这个表大四能够匹配摄氏和华氏温度，我们让用户再温度的末尾加上C或者F来表示。我们可以在正则表达式末尾加上`CF`来匹配用户的输入。
 
-```
+```perl
 print "请输入一个摄氏温度： \n";
 $input = <STDIN>;
 chomp($input);
@@ -137,13 +136,13 @@ if($input =~ m/^([-+]?[0-9]+)([CF])$/){
 
 因为 `（\.[0-9]*）？`可以处理浮点数，那么在上面例子基础上再增加能够匹配浮点数的要求，可以得到
 
-```
+```perl
 if( $input  =~ m/^([-+]?[0-9]+(\.[0-9]*)?)([CF])$/)
 ```
 
 接下来处理数字和字母之间可能出现的空格，我们知道，正则表达式中的空格符证号对应匹配文本中的空格字符，所以 `空格+*`可以匹配任意数目的空格（但不是必须出现空格），所以得出
 
-```
+```perl
 if( $input =~ m/^([-+]?[0-9]+(\.[0-9]*)?) *([CF])$/)
 ```
 
@@ -157,13 +156,13 @@ if( $input =~ m/^([-+]?[0-9]+(\.[0-9]*)?) *([CF])$/)
 
 代码优化为
 
-```
+```perl
 if( $input =~ m/^([-+]?[0-9]+(\.[0-9]*)?)\s*([CF])$/)
 ```
 
 另外还有温度制式的大小写字母，可以做以下忽略大小写优化
 
-```
+```perl
 if( $input =~ m/^([-+]?[0-9]+(\.[0-9]*)?)\s*([CF])$/i)
 ```
 
@@ -171,7 +170,7 @@ if( $input =~ m/^([-+]?[0-9]+(\.[0-9]*)?)\s*([CF])$/i)
 
 温度转换程序的最终版本
 
-```
+```perl
 print "请输入一个摄氏温度： \n";
 $input = <STDIN>;
 chomp($input);
@@ -230,7 +229,7 @@ Perl和许多其他语言提供的一个正则表达式的特征：替换（subs
 
 所以使用 `$var =~ s/.../.../`可以改变 `$var`中文本（如果没有找到匹配的文本，也就不会有替换的发生）。例如：结果变量中包含 `Jeff Friedl`,运行下列代码
 
-```
+```perl
 $var =~ s/Jeff/Jeffrey/;
 ```
 
@@ -242,14 +241,14 @@ $var =~ s/Jeff/Jeffrey/;
 
 例子
 
-```
+```perl
 亲爱的 =FIRST=,
 您已经被我们选中，可以免费领取价值 =PRICE= 的 =TRINKET=，=TOTAL= 你值得拥有
 ```
 
 假设变量的值为
 
-```
+```perl
 $given = "陈先生"；
 $price = "1000万"；
 $prize = "钻石"；
@@ -257,7 +256,7 @@ $prize = "钻石"；
 
 准备好之后，既可以用下面的语句进行填写模板
 
-```
+```perl
 $letter =~ s/=FIRST=/$given/g;
 $letter =~ s/=PRICE=/$price/g;
 $letter =~ s/=TRINKET=/$prize/g;
@@ -268,7 +267,7 @@ $letter =~ s/=TOTAL=/$price的$prize/g;
 
 有时候，我们在操作数字运算的时候，会得到“9.0500000024456”类似这样的数字。本来我们想拿到的数字应该是“9.05”,这是因为计算机内部表示浮点的原理，我们可以用 `printf`来保证只输出两位小数，但是如果遇到 “1/8”的数字，则应该输出3位小数点。通过分析可以得知，通常是保留小数点后两位数字，如果第三位不为0，也需要保留，去掉其他数字。用一下正则
 
-```
+```perl
 $price =~ s/(\.\d\d[1-9]?)\d*/$1/;
 ```
 
@@ -278,7 +277,7 @@ $price =~ s/(\.\d\d[1-9]?)\d*/$1/;
 
 将文本汇总所有出现的 `sysread`改成 `read`。
 
-```
+```perl
 perl -p -i -e 's/syread/read/g' file
 ```
 
@@ -290,7 +289,7 @@ perl -p -i -e 's/syread/read/g' file
 
 匹配邮件的发送地址：
 
-```
+```perl
 target:
 From: 3213213@da232.org (The King)
 
@@ -314,7 +313,7 @@ From: 3213213@da232.org (The King)
 
 即匹配但是不会捕获
 
-```
+```perl
 $pop =~ s/(?<=\d)(?=(\d\d\d)+$)/,/g;
 ```
 
@@ -327,7 +326,7 @@ $pop =~ s/(?<=\d)(?=(\d\d\d)+$)/,/g;
 
 那么假如我们的数字是在一段文本中的，我们的正则表达式可以修改为
 
-```
+```perl
 $text =~ s/(?<=\d)(?=(\d\d\d)+(?!\d))/,/g;
 ```
 
@@ -339,7 +338,7 @@ $text =~ s/(?<=\d)(?=(\d\d\d)+(?!\d))/,/g;
 
 原始文本会包含“&”，“<”，">"，转换为对应的HTML编码，分别是“&amp”、“&lt”、“&gt”。在HTML中这些字符有特殊的含义，编码不正确可能会导致显示错误。
 
-```
+```perl
 $text =~ s/&/&amp;/g;
 $text =~ s/</&lt;/g;
 $text =~ s/>/&gt;/g;
@@ -349,7 +348,7 @@ $text =~ s/>/&gt;/g;
 
 我们用HTML 的p标签来标记段落。识别段落的简单办法就是把空行作为段落之间的分隔。最容易想起的方法是
 
-```
+```perl
 $text =~ s/^$/<p>/g;
 ```
 
@@ -357,7 +356,7 @@ $text =~ s/^$/<p>/g;
 
 大多数支持正则表示的语言提供了一个简单的办法，就是“增强的行锚点（enhanced line anchor）”匹配模式，在这种模式下， `^`和 `$`会从字符串模式切换到本例子中需要的逻辑行模式。在Perl，使用 `/m`修饰符来选中此模式
 
-```
+```perl
 $text =~ s/^S/<p>/mg;
 ```
 
@@ -369,13 +368,13 @@ $text =~ s/^S/<p>/mg;
 
 识别邮箱地址，转换为“mailto”链接。例如
 
-```
+```perl
 fed@qq.com -> <a href="mailto:fed.qq.com"> fed.qq.com </a>
 ```
 
 大致思路
 
-```
+```perl
 $text =~ s/\b(username regex\@hostname regex)\b/<a href="mailto:$1">$1<\/a>/g;
 ```
 
@@ -383,7 +382,7 @@ $text =~ s/\b(username regex\@hostname regex)\b/<a href="mailto:$1">$1<\/a>/g;
 
 匹配邮箱地址最简便的方法是 `\w+\@\w+(\.\w+)+`,实际应用起来的话，我们需要考虑到更周到一些，用户名可以包含点号和连字符（虽然用户名不会以这两种字符开头）。可以用 `\w[-.\w]*`来替换 `\w`。而主机名的匹配则要匹配则要复杂一点，因为点号只能作为分隔符，也就是说两个句号之间必须有其他字符。
 
-```
+```perl
 \@[-a-z0-9]+(\.[-a-z0-9]+)*\.(com|edu|info)
 ```
 [上一章](https://github.com/LbhFront-end/About-Regular-Expression/blob/master/About-Regular-Expression-Part1.md) 
